@@ -1,63 +1,25 @@
-// import gulp from 'gulp';
-// import babel from 'gulp-babel';
-// // import browserify from 'gulp-browserify';
-// import uglify from 'gulp-uglify';
-// import {deleteSync} from 'del';
-// import less from 'gulp-less';
 const gulp = require('gulp')
-const babel = require('gulp-babel')
-const uglify = require('gulp-uglify')
-const deleteSync = require('del')
-const less = require('gulp-less')
-// const webpack = require('webpack-stream');
 const webserver = require('gulp-webserver')
 const htmlmin = require('gulp-htmlmin')
-const util = require("gulp-util");
-const changed = require("gulp-changed");
-const color = require('gulp-color');
+const deleteSync = require('del')
 
-
-const copyFiles = ['./npm_plugin/*.json', './npm_plugin/*.md']
-const watchList = [{ url: './npm_plugin/*.js', type: js }, { url: './src/*.html', type: html }]
-const outputFile = 'dist'
-
-function logOutput(arr) {
-  if (arr.length > 0) {
-    for (let i in arr) {
-      console.log(`[${new Date().toLocaleTimeString()}] ${color(arr[i], 'GREEN')}`)
-    }
-  }
-}
-
-// function css_build() {
-//   return gulp.src('test.less')    // 入口文件
-//     .pipe(less())
-//     .pipe(gulp.dest('dist/css')); //打包之后的文件
+const config = require('./gulp_config_file/index.js');
+const outputFile =  config.commonFunc.outputFile;
+const logOutput =  config.commonFunc.logOutput;
+const color =  config.commonFunc.logColor;
+const tasks = gulp.parallel(html, config.funcList)
+const watchFileList = config.watchFileList.concat([{url:'./src/*.html',type: html}])
+const fs = require('fs');
+// var env = 'test';
+// function set_env(type){
+//     env = type || env;
+//     // 生成env.js文件，用于开发页面时，判断环境
+//     fs.writeFile("./src/js/env.js", 'function ENV (){ return "' + env + '"};', function(err){
+//         err && console.log(err);
+//     });
 // }
-
-function js() {
-  let arr = []
-  return gulp.src("./npm_plugin/*.js")
-    .on('data', function (chunk) {
-      arr.push(chunk.path)
-    })
-    // .pipe(babel({ presets: ['@babel/preset-env'] }))              //语法编译 
-    .pipe(babel())              //语法编译 
-    .pipe(uglify(
-      // {
-      //   mangle: true,//类型：Boolean 默认：true 是否修改变量名
-      //   compress: true,//类型：Boolean 默认：true 是否完全压缩
-      //   preserveComments: 'all' //保留所有注释
-      // }
-    ))             //代码压缩
-    .on('error', function (err) {
-      console.log(color(`[${new Date().toLocaleTimeString()}] ${err.message}`, 'RED'))
-    })
-    .pipe(gulp.dest(`${outputFile}/npm_plugin`))
-    .on('finish', function () {
-      logOutput(arr);
-    })
-}
+// set_env(process.env.NODE_ENV)
+console.log(process.env)
 // 4. 配置一个打包 html 文件的任务
 function html(cb) {
   let arr = []
@@ -82,40 +44,8 @@ function html(cb) {
       console.log(color(`[${new Date().toLocaleTimeString()}] ${err.message}`, 'RED'),788)
     })
     .pipe(gulp.dest(`${outputFile}/src`))// 放到指定目录
-    // .on('data', function (chunk) {
-    //   nDes++
-    //   console.log(`[${new Date().toLocaleTimeString()}] ${color(chunk.path, 'GREEN')}`)
-    //   // var contents = chunk.contents.toString().trim(); 
-    //   // var bufLength = process.stdout.columns;
-    //   // var hr = '\n\n' + Array(bufLength).join("_") + '\n\n'
-    //   // if (contents.length > 1) {
-    //   //     process.stdout.write(chunk.path + '\n' + contents + '\n');
-    //   //     process.stdout.write(chunk.path + hr);
-    //   // }
-    // })
     .on('finish', function (chunk) {
       logOutput(arr);
-      // console.log(color(chunk, 'GREEN'));
-      // util.log("# src files: ", nSrc);
-      // util.log("# dest files:", nDes);
-      // util.log("# dest files:", util.date.masks.default);
-
-    })
-}
-
-function copy() {
-  let arr = []
-  return gulp.src(copyFiles)
-    .on('data', function (chunk) {
-      chunk.path && arr.push(chunk.path)
-    })
-    .on('error', function (err) {
-      console.log(color(`[${new Date().toLocaleTimeString()}] ${err.message}`, 'RED'))
-    })
-    .pipe(gulp.dest(`${outputFile}/npm_plugin`))
-    .on('finish', function () {
-      logOutput(arr);
-      // console.log(`[${new Date().toLocaleTimeString()}] ${color('文件复制完成')}`)
     })
 }
 async function del() {
@@ -147,11 +77,11 @@ function webserverHandler() {
 //监听
 function watchHandler() {
   // gulp.watch('./npm_plugin/*.js', gulp.series(js))
-  for (let i in watchList) {
-    gulp.watch(watchList[i].url, gulp.series(watchList[i].type))
+  for (let i in watchFileList) {
+    gulp.watch(watchFileList[i].url, gulp.series(watchFileList[i].type))
   }
 }
-const tasks = gulp.parallel(js, html, copy)
+
 gulp.task('webserverHandler', gulp.series(webserver))
 // 多任务合并执行
 // gulp.task("clean", gulp.series(del));

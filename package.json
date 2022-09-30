@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "gulp": "gulp clean & gulp build",
-    "dev": "gulp dev",
-    "build": "gulp build"
+    "dev": "cross-env NODE_ENV=dev gulp dev",
+    "test": "cross-env NODE_ENV=test gulp build",
+    "build": "cross-env NODE_ENV=production gulp build"
   },
   "author": "raywang",
   "license": "ISC",
@@ -28,5 +29,8 @@
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
     "gulp-webserver": "^0.9.1"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
   }
 }
