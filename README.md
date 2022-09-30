@@ -4,8 +4,10 @@
 version 1.0.0
 项目创建   2022-09-30 09:40:25
 
-## 安装依赖  npm install
+### 安装依赖  
+npm install
 
+### 项目目录
 >gulpfile.js  gulp 配置文件
 
 >src        html, js, css 逻辑代码文件
