@@ -20,14 +20,8 @@ function loadJs() {
     .on('data', function (chunk) {
       arr.push(chunk.path);
     })
-    // .pipe(babel({ presets: ['@babel/preset-env'] }))              //语法编译 
     .pipe(babel())              //语法编译 
     .pipe(uglify(
-      // {
-      //   mangle: true,//类型：Boolean 默认：true 是否修改变量名
-      //   compress: true,//类型：Boolean 默认：true 是否完全压缩
-      //   preserveComments: 'all' //保留所有注释
-      // }
     ))             //代码压缩
     .on('error', function (err) {
       console.log(color(`[${new Date().toLocaleTimeString()}] ${err.message}`, 'RED'))
