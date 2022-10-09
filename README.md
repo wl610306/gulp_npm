@@ -25,7 +25,7 @@ npm install
 >> html ---- 入口页面
 
 >npm_plugin ---- 各模块业务逻辑文件
->> wl_file_download ---- 文件下载
->>> index.js ---- 逻辑代码入口
->> wl_date_util ---- 日期格式化 日期差计算
+>> wl_file_download ---- 文件下载 <br>
+>>> index.js ---- 逻辑代码入口 <br>
+>> wl_date_util ---- 日期格式化 日期差计算 <br>
 >>> index.js ---- 逻辑代码入口
