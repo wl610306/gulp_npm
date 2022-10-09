@@ -1,0 +1,23 @@
+{
+  "name": "wl_utils",
+  "version": "1.0.0",
+  "description": "日期工具类",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "时间格式化",
+    "日期格式化",
+    "格式化",
+    "日期计算",
+    "date",
+    "format"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "github+https://github.com/wl610306/gulp_npm/tree/master/npm_plugin/wl_date_util"
+  },
+  "author": "raywang",
+  "license": "ISC"
+}

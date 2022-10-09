@@ -8,12 +8,13 @@ const color = commonFunc.logColor;
 const logOutput = commonFunc.logOutput;
 
 const firstFileName = 'npm_plugin';
-const secendFileName = 'wl_file_download';
+const secendFileName = 'wl_date_util';
 const fileUrlPrifx = `./${firstFileName}/${secendFileName}/`
-const watchFileList = [{url: fileUrlPrifx, type: loadJs}]
+const watchFileList = [{url: fileUrlPrifx, type: utilsJs}]
 const copyFiles = [`${fileUrlPrifx}*.json`, `${fileUrlPrifx}*.md`];
 
-function loadJs() {
+
+function utilsJs() {
   let arr = []
   return gulp.src(`${fileUrlPrifx}*.js`)
     .on('data', function (chunk) {
@@ -31,7 +32,7 @@ function loadJs() {
 }
 
 
-function loadCopy() {
+function utilsCopy() {
   let arr = []
   return gulp.src(copyFiles)
     .on('data', function (chunk) {
@@ -47,8 +48,8 @@ function loadCopy() {
 }
 module.exports = {
     func:[
-        loadJs,
-        loadCopy,
+      utilsJs,
+      utilsCopy,
     ],
     watchFileList
 }

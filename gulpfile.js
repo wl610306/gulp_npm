@@ -10,12 +10,14 @@ const config = require('./gulp_config_file/index.js');
 const outputFile =  config.commonFunc.outputFile;
 const logOutput =  config.commonFunc.logOutput;
 const color =  config.commonFunc.logColor;
-const tasks = gulp.parallel(js,html, config.funcList);
+
 const fileList = [
   {url:'./src/**/*.html',type: html},
   {url:'./src/**/*.js',type: js},
 ];
-const watchFileList = config.watchFileList.concat(fileList);
+console.log(config)
+const tasks = gulp.parallel(js,html, config.funcList);
+const watchFileList = fileList.concat(config.watchFileList);
 // const isDev = env() === 'dev'
 // const fs = require('fs');
 // var env = 'test';

@@ -11,6 +11,10 @@
     "二进制",
     "文件下载"
   ],
+  "repository": {
+    "type": "github",
+    "url": "github+https://github.com/wl610306/gulp_npm/tree/master/npm_plugin/wl_file_download"
+  },
   "author": "ranwang",
   "license": "ISC"
 }
