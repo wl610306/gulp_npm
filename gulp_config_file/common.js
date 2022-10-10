@@ -1,4 +1,5 @@
 const outputFile = 'dist';
+const NODE_ENV = process.env.NODE_ENV === 'dev';
 const logColor = require('gulp-color');
 function logOutput(arr) {
     if (arr.length > 0) {
@@ -11,5 +12,6 @@ function logOutput(arr) {
 module.exports = {
     outputFile,
     logColor,
-    logOutput
+    logOutput,
+    NODE_ENV
 }

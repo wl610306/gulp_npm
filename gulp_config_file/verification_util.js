@@ -9,13 +9,12 @@ const color = commonFunc.logColor;
 const logOutput = commonFunc.logOutput;
 
 const firstFileName = 'npm_plugin';
-const secendFileName = 'wl_date_util';
+const secendFileName = 'wl_verification_util';
 const fileUrlPrifx = `./${firstFileName}/${secendFileName}/`
-const watchFileList = [{url: fileUrlPrifx, type: dateUtilsJs}]
+const watchFileList = [{url: fileUrlPrifx, type: verificationUtilsJs}]
 const copyFiles = [`${fileUrlPrifx}*.json`, `${fileUrlPrifx}*.md`];
 
-
-function dateUtilsJs() {
+function verificationUtilsJs() {
   let arr = []
   if(commonFunc.NODE_ENV){
     return gulp.src(`${fileUrlPrifx}*.js`)
@@ -48,11 +47,10 @@ function dateUtilsJs() {
         logOutput(arr);
     })
   }
-  
 }
 
 
-function dateUtilsCopy() {
+function verificationUtilsCopy() {
   let arr = []
   return gulp.src(copyFiles)
     .on('data', function (chunk) {
@@ -68,8 +66,8 @@ function dateUtilsCopy() {
 }
 module.exports = {
     func:[
-      dateUtilsJs,
-      dateUtilsCopy,
+      verificationUtilsJs,
+      verificationUtilsCopy,
     ],
     watchFileList
 }

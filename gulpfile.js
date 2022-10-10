@@ -12,11 +12,10 @@ const logOutput =  config.commonFunc.logOutput;
 const color =  config.commonFunc.logColor;
 
 const fileList = [
-  {url:'./src/**/*.html',type: html},
+  {url:'./public/**/*.html',type: html},
   {url:'./src/**/*.js',type: js},
 ];
-console.log(config)
-const tasks = gulp.parallel(js,html, config.funcList);
+const tasks = gulp.parallel(js,html,fileCopy, config.funcList);
 const watchFileList = fileList.concat(config.watchFileList);
 // const isDev = env() === 'dev'
 // const fs = require('fs');
@@ -48,16 +47,30 @@ function js(){
          .on('error', function (err) {
            console.log(color(`[${new Date().toLocaleTimeString()}] ${err.message}`, 'RED'));
          })
-         .pipe(gulp.dest(`${outputFile}/src/js`))
+         .pipe(gulp.dest(`${outputFile}/js`))
          .on('finish', function () {
              logOutput(arr);
          })
+}
+function fileCopy() {
+  let arr = []
+  return gulp.src(['./public/img/**/*','./public/favicon.ico'])
+    .on('data', function (chunk) {
+      chunk.path && arr.push(chunk.path);
+    })
+    .on('error', function (err) {
+      console.log(color(`[${new Date().toLocaleTimeString()}] ${err.message}`, 'RED'));
+    })
+    .pipe(gulp.dest(`${outputFile}`))
+    .on('finish', function () {
+        logOutput(arr);
+    })
 }
 // 4. 配置一个打包 html 文件的任务
 function html(cb) {
   let arr = []
   return gulp
-    .src('./src/*.html')
+    .src('./public/*.html')
     .on('data', function (chunk) {
       arr.push(chunk.path)
     })
@@ -76,7 +89,7 @@ function html(cb) {
     .on('error',  (err)=> {
       console.log(color(`[${new Date().toLocaleTimeString()}] ${err.message}`, 'RED'),788)
     })
-    .pipe(gulp.dest(`${outputFile}/src`))// 放到指定目录
+    .pipe(gulp.dest(`${outputFile}`))// 放到指定目录
     .on('finish', function (chunk) {
       logOutput(arr);
     })
@@ -92,7 +105,7 @@ function webserverHandler() {
     .pipe(webserver({
       host: 'localhost', // 打开域名
       port: 3000, //打开端口号
-      open: './src/index.html', // 默认打开页面
+      open: './index.html', // 默认打开页面
       livereload: true, // 是否自动刷新浏览器
       // //代理
       // proxies:[

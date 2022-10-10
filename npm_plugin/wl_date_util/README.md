@@ -5,11 +5,11 @@ version 1.0.0       插件创建       2002-10-09
 
 ### 安装 
 ```js
-npm install wl_utils --save-dev
+npm install wl_date_util --save-dev
 
 ```
 
 ### 使用  
 ```js
- import { dateFormat, getMonthDate, fistAndLastDate, startAndEndTime, calcDate,monthDayDiff } from 'wl_date_util'
+ import { getMonthFistAndLastDate,calcDateTimeDiff,caleDateDiff,getStartAndEndTime,getMonthBeforeOrAfterDate,dateFormat,getWeekDay,} from 'wl_date_util'
 ```

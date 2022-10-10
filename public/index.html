@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+  />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>GULP打包NPM插件</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <div>
+    <h1>gulp 打包测试 npm插件</h1>
+    <input type="text" id="inputName" />
+    <span id="name"></span>
+  </div>
+  <script type="module">
+    import { wl_file_download } from "../npm_plugin/wl_file_download/index.js";
+    import {
+      getMonthFistAndLastDate,
+      calcDateTimeDiff,
+      caleDateDiff,
+      getStartAndEndTime,
+      getMonthBeforeOrAfterDate,
+      dateFormat,
+      getWeekDay,
+    } from "../npm_plugin/wl_date_util/index.js";
+    import {
+      isEmail,
+      checkEmail,
+      isMobile,
+      checkMobilePhone,
+      isPhone,
+      isURL,
+      checkURL,
+      checkLowercase,
+      checkUppercase,
+      checkUpperAndLowerCase,
+      checkPcOrPad,
+      checkCardId,
+      checkChinese,
+      checkInteger,
+      checkDecimal,
+      chenkEmpty,
+      checkSpecialCharacter,
+      checkLetterAndNumber,
+    } from "../npm_plugin/wl_verification_util/index.js";
+    // const res = dateFormat(1665296915798,'yyyy年MM月dd日')
+    // const res = dateFormat(1665296915798)
+    // const res = getMonthDate(-1,1665296915798,'yyyy/MM/dd')
+    // const res = fistAndLastDate('2022-02-15',false,'yyyy/MM/dd hh:mm:ss')
+    // const res = startAndEndTime('2022-02-15')
+    // const res = calcDate("2022-05-15", "2022-02-18 20:18:01", true);
+    // const ress = monthDayDiff("2023-12-15", "2023-02-18 20:18:01");
+    // const res = getWeekDay();
+    // console.log(ress)
+    let obj = {
+      name: "",
+    };
+    let newobj = JSON.parse(JSON.stringify(obj));
+    let spanName = document.getElementById("name");
+    let inputName = document.getElementById("inputName");
+    Object.defineProperty(obj, "name", {
+      //数据拦截obj里面的name属性
+      get() {
+        return newobj.name; //不能使用return obj.name，因为这样获取会重新执行get方法进入死循环
+      },
+      set(val) {
+        if (newobj.name === val) {
+          //如果旧值等于输入的值，return出去
+          return;
+        }
+        newobj.name = val;
+        observer();
+      },
+    });
+    //监听方法
+    function observer() {
+      spanName.innerHTML = obj.name;
+      inputName.value = newobj.name;
+    }
+    inputName.oninput = function () {
+      obj.name = this.value;
+
+      // console.log(isEmail(this.value))
+    };
+  </script>
+</body>
