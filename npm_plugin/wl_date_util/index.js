@@ -193,5 +193,4 @@ export default {
     getMonthBeforeOrAfterDate,
     dateFormat,
     getWeekDay,
-    getCalendarPlugin
 }
