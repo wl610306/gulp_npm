@@ -11,6 +11,7 @@ npm install wl_verification_util --save-dev
 
 ### 使用  
 ```js
+// 按需引入
  import {
       isEmail,
       checkEmail,
@@ -31,4 +32,6 @@ npm install wl_verification_util --save-dev
       checkSpecialCharacter,
       checkLetterAndNumber,
     } from "../npm_plugin/wl_verification_util/index.js";
+// 全量引入
+import verificationUtils from "../npm_plugin/wl_verification_util/index.js";
 ```
