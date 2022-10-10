@@ -1,10 +1,11 @@
+const defaultFormatOpt = 'yyyy-MM-dd hh:mm:ss'
 /**
  * 日期格式化
  * 
  * date: 需要格式化的日期时间
  * formatOpt: 格式化后输出的形式
  */
-export function dateFormat(date, formatOpt = 'yyyy-MM-dd hh:mm:ss') {
+export function dateFormat(date, formatOpt = defaultFormatOpt) {
     let format = formatOpt;
     if (date != 'Invalid Date') {
         date = new Date(date);
@@ -36,7 +37,7 @@ export function dateFormat(date, formatOpt = 'yyyy-MM-dd hh:mm:ss') {
  * date: 当前日期
  * formatOpt: 格式化后输出的形式
  */
-export function getMonthDate(n, date,formatOpt = 'yyyy-MM-dd hh:mm:ss') {
+export function getMonthBeforeOrAfterDate(n, date,formatOpt = defaultFormatOpt) {
     let dt = date ? new Date(date) : new Date();
     dt.setMonth(dt.getMonth() + Number(n));
     return dateFormat(dt,formatOpt);
@@ -49,7 +50,7 @@ export function getMonthDate(n, date,formatOpt = 'yyyy-MM-dd hh:mm:ss') {
  * time: 是否显示时间 
  * formatOpt: 格式化后输出的形式
  */
-export function fistAndLastDate(date,time,formatOpt = 'yyyy-MM-dd',) {
+export function getMonthFistAndLastDate(date,time,formatOpt = 'yyyy-MM-dd') {
     let curDate = date ? new Date(date) : new Date();
     let y = curDate.getFullYear();
     let m = curDate.getMonth() + 1;
@@ -82,7 +83,7 @@ export function fistAndLastDate(date,time,formatOpt = 'yyyy-MM-dd',) {
  * date: 当前日期
  * formatOpt: 格式化后输出的形式
  */
-export function startAndEndTime(date,formatOpt='yyyy-MM-dd hh:mm:ss') {
+export function getStartAndEndTime(date,formatOpt= defaultFormatOpt) {
     let data = date ? new Date(date).toLocaleDateString() : new Date().toLocaleDateString();
     let sartTime = new Date(data).getTime();
     let endTime = new Date(data).getTime() + 24 * 60 * 60 * 1000 - 1;
@@ -95,7 +96,7 @@ export function startAndEndTime(date,formatOpt='yyyy-MM-dd hh:mm:ss') {
  * date2: 大日期 顺序变动
  * isYear: 是否计算年月日
  */
- export const calcDate = (date1, date2, isYear) => {
+ export const calcDateTimeDiff = (date1, date2, isYear) => {
     let start = new Date(date1)
     let end = new Date(date2)
     let date3 = Math.abs(end.getTime() - start.getTime());
@@ -139,7 +140,7 @@ export function startAndEndTime(date,formatOpt='yyyy-MM-dd hh:mm:ss') {
  * startTime: 小日期 顺序变动
  * endTime: 大日期 顺序变动
  */
- export function monthDayDiff(startTime,endTime) {
+ export function caleDateDiff(startTime,endTime) {
     let flag = [1, 3, 5, 7, 8, 10, 12, 4, 6, 9, 11, 2];
     let start = new Date(startTime);
     let end = new Date(endTime);
@@ -173,14 +174,24 @@ export function startAndEndTime(date,formatOpt='yyyy-MM-dd hh:mm:ss') {
         totalMonths
     }
   }
-
-
+  /**
+ * 根据日期 计算星期
+ * 
+ * date: 当前日期
+ */
+ export function getWeekDay(date) {
+    const newDate = new Date(date);
+    const week =  ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    return week[newDate.getDay()]
+  }
 
 export default {
+    getMonthFistAndLastDate,
+    calcDateTimeDiff,
+    caleDateDiff,
+    getStartAndEndTime,
+    getMonthBeforeOrAfterDate,
     dateFormat,
-    fistAndLastDate,
-    getMonthDate,
-    startAndEndTime,
-    calcDate,
-    monthDayDiff
+    getWeekDay,
+    getCalendarPlugin
 }
