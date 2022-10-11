@@ -50,7 +50,8 @@
       checkLetterAndNumber,
     } from "../npm_plugin/wl_verification_util/index.js";
     import rules from "../npm_plugin/wl_verification_util/index.js";
-    console.log(rules)
+    import utils from "../npm_plugin/wl_utils/index.js";
+    console.log(utils)
     // const res = dateFormat(1665296915798,'yyyy年MM月dd日')
     // const res = dateFormat(1665296915798)
     // const res = getMonthDate(-1,1665296915798,'yyyy/MM/dd')
@@ -60,6 +61,9 @@
     // const ress = monthDayDiff("2023-12-15", "2023-02-18 20:18:01");
     // const res = getWeekDay();
     // console.log(ress)
+    // console.log(utils.getQueryString('https://www.baidu.com/s?wd=%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91&rsv_spt=1&rsv_iqid=0xb1c21e61004a3dfe&issp=1&f=3&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=1&rsv_dl=ts_0&oq=js%2520throw%2520error&rsv_t=57canzxmPnkFzf6olum%2Bog4IlizB3vGcyaqC3yz4eqAWBd7flfGLlKeSSOIR2BrSdM1L&rsv_btype=t&inputT=2105&rsv_pq=984eede8002c4258&rsv_sug3=41&rsv_sug1=48&rsv_sug7=100&rsv_sug2=1&prefixsug=%25E7%25BF%25BB%25E8%25AF%2591&rsp=0&rsv_sug4=2105','wd'))
+    // console.log(utils.cardIdMask('130634188858787745'))
+    console.log(utils.strMask('wanglei'))
     let obj = {
       name: "",
     };

@@ -1,6 +1,6 @@
-# 二进制流文件下载
+# 文件下载
 ## 更新
-version 1.0.9        插件创建       2002-09-30 
+
 ### 安装  
 ```js
 npm install wl_file_download --save-dev
@@ -8,5 +8,8 @@ npm install wl_file_download --save-dev
 
 ### 使用  
 ```js
- import { wl_file_download } from 'wl_file_load'
+//按需引入
+ import { wl_file_download, wl_url_download } from 'wl_file_download'
+ // 全局引入
+ import fileDownload from 'wl_file_download'
  ```
