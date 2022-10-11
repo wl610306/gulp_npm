@@ -1,5 +1,5 @@
 {
-  "name": "wl_utils",
+  "name": "wl_util_set",
   "version": "1.0.0",
   "description": "工具类",
   "main": "index.js",

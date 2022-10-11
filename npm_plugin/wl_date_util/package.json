@@ -1,5 +1,5 @@
 {
-  "name": "wl_utils",
+  "name": "wl_date_util",
   "version": "1.0.0",
   "description": "日期工具类",
   "main": "index.js",

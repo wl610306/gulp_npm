@@ -9,7 +9,7 @@ const color = commonFunc.logColor;
 const logOutput = commonFunc.logOutput;
 
 const firstFileName = 'npm_plugin';
-const secendFileName = 'wl_utils';
+const secendFileName = 'wl_util_set';
 const fileUrlPrifx = `./${firstFileName}/${secendFileName}/`
 const watchFileList = [{url: fileUrlPrifx, type: otherUtilsJs}]
 const copyFiles = [`${fileUrlPrifx}*.json`, `${fileUrlPrifx}*.md`];

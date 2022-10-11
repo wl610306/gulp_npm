@@ -3,7 +3,7 @@
 
 ### 安装  
 ```js
-npm install wl_utils --save-dev
+npm install wl_util_set --save-dev
 ```
 
 ### 使用  
@@ -34,7 +34,7 @@ npm install wl_utils --save-dev
     uniqueArray,
     arrayLowerLatitude,
     strMask
-} from 'wl_utils'
+} from 'wl_util_set'
  // 全量引入
- import utils from 'wl_utils'
+ import utils from 'wl_util_set'
  ```

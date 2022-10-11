@@ -1,6 +1,6 @@
 {
   "name": "wl_file_load",
-  "version": "1.0.9",
+  "version": "1.0.0",
   "description": "文件下载",
   "main": "index.js",
   "scripts": {
